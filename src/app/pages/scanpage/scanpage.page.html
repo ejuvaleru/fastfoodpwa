@@ -1,0 +1,34 @@
+<ion-content>
+
+  <div class="scan-to-container">
+    <h2 class="subtitle">Por favor escanea el código QR frente a ti</h2>
+    <h6 class="help-text">El escaneo comenzará automáticamente...</h6>
+    <img src="https://images.vexels.com/media/users/3/158120/isolated/preview/bff830206408c36b53b196b155747b02-qr-code-on-smartphone-by-vexels.png" alt="">
+    <ion-button expand="full" shape="" (click)="startScan()">
+      <ion-icon slot="start" name="scan-outline"></ion-icon>
+      Escanear
+    </ion-button>
+  </div>
+
+  <!-- Shows our camera stream -->
+  <video #video [hidden]="!scanActive"></video>
+
+  <!-- Used to render the camera stream images -->
+  <canvas #canvas hidden></canvas>
+
+  <!-- Stop our scanner preview if active -->
+  <ion-button class="stop-scan-btn" expand="full" (click)="stopScan()" color="danger" *ngIf="scanActive">
+    <ion-icon slot="start" name="close"></ion-icon>
+    Detener
+  </ion-button>
+
+  <!-- ESTO SE VA A ELIMINAR EN PRODUCCIÓN, ES SOLO PARA FINES DE DESARROLLO -->
+  <ion-card *ngIf="scanResult">
+    <ion-card-header>
+      <ion-card-title>QR Code</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ scanResult }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

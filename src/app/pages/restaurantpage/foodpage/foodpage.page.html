@@ -1,0 +1,69 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true">
+  <img class="restaurant-img" src="https://recetadehotcakes.com/wp-content/uploads/2016/08/1.-hot-cakes-1.jpg" alt="">
+
+  <div class="ion-padding-start ion-padding-end">
+    <h1><strong>Deliciosos Hot Cakes</strong></h1>
+
+    <div class="ion-padding-bottom">
+      <ion-row class="category-banner">
+        <ion-col class="text-left align-self-center" tappable (click)="isExpanded = !isExpanded">
+          <div class="category-name-container">
+            Hot cake extra
+            <ion-icon name="arrow-down-outline" *ngIf="!isExpanded"></ion-icon>
+            <ion-icon name="arrow-up-outline" *ngIf="isExpanded"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-list *ngIf="isExpanded">
+        <ion-radio-group>
+          <ion-item lines="none">
+            <ion-label>Mermelada</ion-label>
+            <ion-radio slot="end" value="biff"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </div>
+
+    <div class="ion-padding-bottom">
+      <ion-row class="category-banner">
+        <ion-col class="text-left align-self-center" tappable (click)="isExpanded2 = !isExpanded2">
+          <div class="category-name-container">
+            Toppings
+            <ion-icon name="arrow-down-outline" *ngIf="!isExpanded2"></ion-icon>
+            <ion-icon name="arrow-up-outline" *ngIf="isExpanded2"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-list *ngIf="isExpanded2">
+        <ion-radio-group>
+          <ion-item lines="none">
+            <ion-label>Biff</ion-label>
+            <ion-radio slot="end" value="biff"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </div>
+
+    <ion-item lines="none">
+      <ion-range min="0" max="10" step="1" snaps="true" ticks="true" pin="true" [(ngModel)]="count">
+        <ion-icon slot="start" name="remove-outline"></ion-icon>
+        <ion-icon slot="end" name="add-outline"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </div>
+
+  <ion-button expand="block" [disabled]="count < 1">
+    Agregar
+    {{count}}
+  </ion-button>
+
+</ion-content>

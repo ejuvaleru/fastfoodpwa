@@ -1,0 +1,32 @@
+video{
+    position: fixed; right: 0; top: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto; height: auto; z-index: 10;
+}
+
+.scan-to-container{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+.subtitle{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.help-text{
+    font-size: 14px;
+    color: #C2C2C2;
+}
+
+.stop-scan-btn{
+    position: absolute;
+    top: 90%;
+    z-index: 99;
+}

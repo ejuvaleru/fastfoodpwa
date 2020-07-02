@@ -1,0 +1,27 @@
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    position: absolute;
+    z-index: 99;
+}
+
+.category-banner{
+    align-items: center;
+    background-color: var(--ion-color-light);
+    height: 50px;
+    padding: 0px;
+    font-weight: 900;
+}
+
+.category-name-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.restaurant-img{
+    object-fit: cover;
+    height: 250px;
+    width: 100%;
+}

@@ -1,0 +1,12 @@
+.restaurant-img{
+    object-fit: cover;
+    height: 250px;
+    width: 100%;
+}
+
+.search-menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
