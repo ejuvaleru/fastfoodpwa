@@ -14,6 +14,7 @@ export class RestaurantsService {
   constructor(
     private afs: AngularFirestore
   ) {
+    this.getRestaurants();
    }
 
   getRestaurants() {
@@ -27,6 +28,6 @@ export class RestaurantsService {
   }
 
   getRestaurant(id: string) {
-    return this.restaurants.find(r => r.id === id);
+    return this.afs.collection(this.COLLECTION_NAME).doc(id).valueChanges();
   }
 }

@@ -27,7 +27,7 @@ export class ScanpagePage implements OnInit {
     private plt: Platform,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private router: Router
+    private router: Router,
   ) {
     const isInStandaloneMode = () =>
       'standalone' in window.navigator && window.navigator['standalone'];
@@ -120,6 +120,7 @@ export class ScanpagePage implements OnInit {
           text: 'Open',
           handler: () => {
             this.stopScan();
+            // Se cambia abajo, no aquí =)
             window.open(`https://fastfood-e966a.web.app/${this.scanResult}`, '_self');
           }
         }
@@ -129,6 +130,6 @@ export class ScanpagePage implements OnInit {
   }
 
   openRestaurantPage(){
-    window.open(`https://fastfood-e966a.web.app/${this.scanResult}`, '_self');
+     window.open(`https://fastfood-e966a.web.app/${this.scanResult}`, '_self');
   }
 }

@@ -18,7 +18,7 @@ export class Tab1Page implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.restaurants = this.restaurantsService.getRestaurants();
+    this.restaurants = this.restaurantsService.restaurants;
     console.log(this.restaurants);
     this.size = window.innerWidth;
   }

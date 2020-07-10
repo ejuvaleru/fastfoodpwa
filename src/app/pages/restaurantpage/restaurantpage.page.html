@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content *ngIf="!isLoading">
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="(orderItemCount | async) > 0">
     <ion-fab-button (click)="openCart()">
@@ -10,10 +10,10 @@
   </ion-fab>
 
   <img class="restaurant-img"
-    [src]="restaurant.foto_portada.url"
-    [alt]="restaurant.foto_portada.nombre">
+    [src]="restaurant?.foto_portada.url"
+    [alt]="restaurant?.foto_portada.nombre">
   <div class="ion-padding-start ion-padding-end">
-    <h1><strong>{{restaurant.nombre}}</strong></h1>
+    <h1><strong>{{restaurant?.nombre}}</strong></h1>
 
     <div class="search-menu">
       <h3>Menú</h3>

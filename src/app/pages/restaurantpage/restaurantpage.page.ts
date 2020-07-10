@@ -45,6 +45,8 @@ export class RestaurantpagePage implements OnInit {
     }
   };
 
+  isLoading = true;
+
   token_device: string;
 
   orderItemCount: BehaviorSubject<number>;
@@ -62,14 +64,16 @@ export class RestaurantpagePage implements OnInit {
     private productsService: ProductsService,
     private orderService: OrderserviceService,
     private notificationsService: NotificationsService
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
-    
+
     this.orderItemCount = this.orderService.getOrderItemCount();
-    
+
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      
+
       this.restaurant_id = paramMap.get('restaurantId');
       console.log(this.restaurant_id.toString());
       if (!this.restaurant_id) {
@@ -78,10 +82,12 @@ export class RestaurantpagePage implements OnInit {
       } else {
         this.token_device = this.notificationsService.requestPushNotificationsPermission();
 
-        this.restaurant = this.restaurantService.getRestaurant(this.restaurant_id.toString());
-        console.log('restaurante ', this.restaurant);
-
-        this.products = this.productsService.getProductsByRestaurantId(this.restaurant_id);
+        this.restaurantService.getRestaurant(this.restaurant_id.toString()).subscribe((res: Restaurant) => {
+          this.restaurant = res;
+          console.log('restaurante ', this.restaurant);
+          this.products = this.productsService.getProductsByRestaurantId(this.restaurant_id);
+          this.isLoading = false;
+        });
       }
 
     });
