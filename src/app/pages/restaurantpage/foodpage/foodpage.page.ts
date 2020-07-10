@@ -16,7 +16,7 @@ import { BehaviorSubject } from 'rxjs';
 export class FoodpagePage implements OnInit {
 
   isExpanded = false;
-  isExpanded1 = false;
+  isExpanded2 = false;
   count = 1;
 
   product_id: string;
