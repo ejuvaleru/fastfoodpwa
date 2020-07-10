@@ -1,14 +1,15 @@
 import { TipoRestaurant } from './tiporestaurant.model';
+import { ImageObject } from './image.model';
 
 export interface Restaurant {
     id: string;
     nombre: string;
     rating: number;
-    ubicación: string;
+    ubicacion: string;
     numero_contacto: string;
     horario_apertura: string;
-    descripción: string;
-    foto_portada: string;
-    foto_perfil: string;
+    descripcion: string;
+    foto_portada: ImageObject;
+    foto_perfil: ImageObject;
     tipo_restaurant: TipoRestaurant;
 }

@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderserviceService } from 'src/app/services/orderservice.service';
 import { BehaviorSubject } from 'rxjs';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Restaurant } from 'src/app/models/restaurant.model';
+import { ProductsService } from 'src/app/services/products.service';
+import { Product } from 'src/app/models/product.model';
+import { ModalController } from '@ionic/angular';
+import { OrderCheckoutPage } from './order-checkout/order-checkout.page';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-restaurantpage',
@@ -36,15 +45,59 @@ export class RestaurantpagePage implements OnInit {
     }
   };
 
+  token_device: string;
+
   orderItemCount: BehaviorSubject<number>;
 
+  restaurant_id: string;
+  restaurant: Restaurant;
+
+  products: Product[] = [];
+
   constructor(
+    public modalController: ModalController,
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
+    private restaurantService: RestaurantsService,
+    private productsService: ProductsService,
     private orderService: OrderserviceService,
+    private notificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
+    
     this.orderItemCount = this.orderService.getOrderItemCount();
+    
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      
+      this.restaurant_id = paramMap.get('restaurantId');
+      console.log(this.restaurant_id.toString());
+      if (!this.restaurant_id) {
+        this.location.back();
+        return;
+      } else {
+        this.token_device = this.notificationsService.requestPushNotificationsPermission();
+
+        this.restaurant = this.restaurantService.getRestaurant(this.restaurant_id.toString());
+        console.log('restaurante ', this.restaurant);
+
+        this.products = this.productsService.getProductsByRestaurantId(this.restaurant_id);
+      }
+
+    });
   }
 
+  async openCart() {
+    const modal = await this.modalController.create({
+      backdropDismiss: true,
+      component: OrderCheckoutPage,
+      componentProps: {
+        'order': this.orderService.order,
+        'restaurant_id': this.restaurant_id,
+        'token': this.token_device,
+      }
+    });
 
+    await modal.present();
+  }
 }

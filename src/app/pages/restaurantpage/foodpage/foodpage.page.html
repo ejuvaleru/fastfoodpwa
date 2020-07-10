@@ -6,10 +6,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen="true">
-  <img class="restaurant-img" src="https://recetadehotcakes.com/wp-content/uploads/2016/08/1.-hot-cakes-1.jpg" alt="">
+  <img class="restaurant-img" [src]="product.foto.url" [alt]="product.foto.nombre">
 
   <div class="ion-padding-start ion-padding-end">
-    <h1><strong>Deliciosos Hot Cakes</strong></h1>
+    <h1><strong>{{product.nombre}}</strong></h1>
+    <ion-text>
+      <p>
+        {{product.descripcion}}
+      </p>
+    </ion-text>
+
+    <ion-text>
+      <p>
+        {{product.precio | currency: 'MXN'}}
+      </p>
+    </ion-text>
 
     <div class="ion-padding-bottom">
       <ion-row class="category-banner">
@@ -53,17 +64,23 @@
       </ion-list>
     </div>
 
-    <ion-item lines="none">
-      <ion-range min="0" max="10" step="1" snaps="true" ticks="true" pin="true" [(ngModel)]="count">
-        <ion-icon slot="start" name="remove-outline"></ion-icon>
-        <ion-icon slot="end" name="add-outline"></ion-icon>
-      </ion-range>
-    </ion-item>
+    <div class="order-count-container">
+      <ion-button shape="round" fill="clear" [disabled]="count === 1" (click)="removeOneFromOrder()">
+        <ion-icon name="remove-outline"></ion-icon>
+      </ion-button>
+      <ion-text>
+        <p>
+          {{count}}
+        </p>
+      </ion-text>
+      <ion-button shape="round" fill="clear" (click)="addOneToOrder()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <ion-button shape="round" fill="solid" expand="full" (click)="addToOrder()">
+      Agregar {{count}} - {{count * product.precio | currency: 'MXN'}}
+    </ion-button>
+
   </div>
-
-  <ion-button expand="block" [disabled]="count < 1">
-    Agregar
-    {{count}}
-  </ion-button>
-
 </ion-content>

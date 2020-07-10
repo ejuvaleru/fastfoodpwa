@@ -24,8 +24,13 @@
     padding: 5% 2%;
 }
 .restaurant-img{
+    width: 375px;
+    height: 250px;
     border-radius: 20px;
     object-fit: cover;
+}
+.restaurant-desc{
+    max-width: 80%;
 }
 
 .swiper-slide{

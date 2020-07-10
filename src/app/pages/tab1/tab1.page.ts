@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Restaurant } from 'src/app/models/restaurant.model';
+import { RestaurantsService } from 'src/app/services/restaurants.service';
 
 @Component({
   selector: 'app-tab1',
@@ -8,9 +10,16 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class Tab1Page implements OnInit {
 
   size: number;
-  constructor() { }
+
+  restaurants: Restaurant[];
+
+  constructor(
+    private restaurantsService: RestaurantsService
+  ) { }
 
   ngOnInit() {
+    this.restaurants = this.restaurantsService.getRestaurants();
+    console.log(this.restaurants);
     this.size = window.innerWidth;
   }
   slideOpts = {

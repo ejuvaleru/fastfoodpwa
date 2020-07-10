@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" slot="icon-only">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item lines="none" *ngFor="let i of order">
+      <ion-thumbnail slot="end">
+        <img [src]="i.product.foto.url">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{i.product.nombre}}</h2>
+        <p>{{i.count}} x {{i.product.precio | currency:'MXN'}} - {{i.product.precio * i.count | currency: 'MXN'}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="full" shape="round" (click)="createOrder()">
+      Ordenar {{total | currency:'MXN'}}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

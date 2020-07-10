@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'foodpage',
     loadChildren: () => import('./foodpage/foodpage.module').then( m => m.FoodpagePageModule)
+  },
+  {
+    path: 'order-checkout',
+    loadChildren: () => import('./order-checkout/order-checkout.module').then( m => m.OrderCheckoutPageModule)
   }
 ];
 

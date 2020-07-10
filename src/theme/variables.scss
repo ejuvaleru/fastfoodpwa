@@ -5,7 +5,7 @@
 :root {
 
   --ion-font-family: 'Quicksand', sans-serif!important;
-
+  --color-border: #000000;
   /** primary **/
   --ion-color-primary: #FE9637;
   --ion-color-primary-rgb: 254,150,55;
@@ -41,8 +41,8 @@
   /** warning **/
   --ion-color-warning: #ffc409;
   --ion-color-warning-rgb: 255, 196, 9;
-  --ion-color-warning-contrast: #000000;
-  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-contrast: #FFFFFF;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
   --ion-color-warning-shade: #e0ac08;
   --ion-color-warning-tint: #ffca22;
 
@@ -86,6 +86,7 @@
    */
 
   body {
+  --color-border: #ffffff;
   /** primary **/
   --ion-color-primary: #FE9637;
   --ion-color-primary-rgb: 254,150,55;
@@ -116,12 +117,12 @@
     --ion-color-success-shade: #29c467;
     --ion-color-success-tint: #44e283;
 
-    --ion-color-warning: #ffd534;
-    --ion-color-warning-rgb: 255,213,52;
-    --ion-color-warning-contrast: #000000;
-    --ion-color-warning-contrast-rgb: 0,0,0;
-    --ion-color-warning-shade: #e0bb2e;
-    --ion-color-warning-tint: #ffd948;
+    --ion-color-warning: #ffc409;
+    --ion-color-warning-rgb: 255, 196, 9;
+    --ion-color-warning-contrast: #FFFFFF;
+    --ion-color-warning-contrast-rgb: 255, 255, 255;
+    --ion-color-warning-shade: #e0ac08;
+    --ion-color-warning-tint: #ffca22;
 
     --ion-color-danger: #ff4961;
     --ion-color-danger-rgb: 255,73,97;

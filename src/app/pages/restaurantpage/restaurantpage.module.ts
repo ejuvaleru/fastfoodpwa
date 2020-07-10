@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { RestaurantpagePageRoutingModule } from './restaurantpage-routing.module';
 
 import { RestaurantpagePage } from './restaurantpage.page';
+import { OrderCheckoutPage } from './order-checkout/order-checkout.page';
+import { OrderCheckoutPageModule } from './order-checkout/order-checkout.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RestaurantpagePageRoutingModule
+    RestaurantpagePageRoutingModule,
+    OrderCheckoutPageModule
   ],
-  declarations: [RestaurantpagePage]
+  declarations: [RestaurantpagePage],
+  entryComponents: [OrderCheckoutPage]
 })
 export class RestaurantpagePageModule {}

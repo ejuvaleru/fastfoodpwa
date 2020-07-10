@@ -1,17 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Órdenes
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list *ngIf="local_orders.length > 0">
+    <ion-card *ngFor="let lo of local_orders; let i = index">
+      <ion-card-header>
+        <div *ngIf="!lo.is_aceptada">
+          <h6>Órden no aceptada aún</h6>
+          <p>Espere mientras el restaurante acepta su órden</p>
+        </div>
+        <div *ngIf="lo.is_aceptada && !lo.is_lista">
+          <h6>Órden en preparación</h6>
+          <p>El restaurante está preparando su órden</p>
+        </div>
+        <div *ngIf="lo.is_lista">
+          <h6>Órden lista</h6>
+          <p>Su órden ha sido entregada</p>
+        </div>
+        <p>Órden: {{lo.id}}</p>
+        <p>{{lo.fecha.seconds * 1000 | date:'dd MMM yyyy, h:mm a'}}</p>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
 
-  <app-explore-container name="Tus favoritos aquí"></app-explore-container>
+          <ion-label>
+            <p *ngFor="let product of lo.productos"><span class="product-order-text">{{product.count }}</span> <span style="font-size: 16px; margin-left: 3%;">{{ product.product.nombre}}</span></p>
+            <hr>
+            <p>Total: {{lo.costo_total | currency:'MXN'}}</p>
+          </ion-label>
+          <ion-button fill="outline" slot="end">Detalles</ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <!-- SI NO HAY ÓRDENES SE MUESTRA ESTO -->
+  <div class="no-orders-container" *ngIf="local_orders.length === 0 && !isLoading">
+    <h2 class="subtitle">Por el momento no tienes ninguna órden</h2>
+    <p class="help-text">Acude a tu restaurante favorito para generar tu primer órden</p>
+    <img src="assets/desayuno.png" alt="" width="200">
+  </div>
 </ion-content>
